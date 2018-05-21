@@ -1,2 +1,6 @@
 /docs/**
-/mysql/mysql_data/**
+!docs/sample/
+!docs/sample/index.php
+
+/mysql/mysql_data/
+
