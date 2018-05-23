@@ -2,7 +2,7 @@ FROM php:7.1-apache
 MAINTAINER docker-web
 
 RUN apt-get update \
-    && apt-get -y install vim wget lsb-release libicu-dev mysql-client libfreetype6-dev libjpeg62-turbo-dev libpng12-dev \
+    && apt-get -y install vim wget lsb-release libicu-dev mysql-client libfreetype6-dev libjpeg62-turbo-dev libpng12-dev ssl-cert \
     && docker-php-ext-install pdo_mysql mysqli intl gd
 
 RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
@@ -12,5 +12,7 @@ RUN echo ServerName $HOSTNAME > /etc/apache2/conf-available/fqdn.conf && a2encon
 COPY ./base.conf /etc/apache2/sites-available/base.conf
 
 RUN a2ensite base.conf
+RUN a2enmod ssl
 
 COPY ./php.ini /usr/local/etc/php/
+EXPOSE 443
