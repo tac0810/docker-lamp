@@ -6,17 +6,26 @@ services:
       - ./mysql/mysql_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 'password'
+  smtp:
+    image: schickling/mailcatcher
+    container_name: 'smtp'
+    ports:
+      - "1080:1080"
+      - "1025:1025"
   apache:
       build: ./apache
+      container_name: 'apache'
       ports:
         - '80:80'
         - '443:443'
       volumes:
         - ./docs:/var/www/html
+        - ./apache/ssmtp.conf:/etc/ssmtp/ssmtp.conf
       depends_on:
         - mysql
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    container_name: 'phpmyadmin'
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOST=mysql
