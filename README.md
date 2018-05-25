@@ -22,3 +22,20 @@ Also if you need access to `example2/public/`, You can access by `http://example
 
 127.0.0.1   example.env
 ```
+
+### MySQL
+```
+user: root
+password: password
+```
+
+### PhpMyAdmin
+http://localhost:8080
+```
+user: root
+host: mysql
+password: password
+```
+
+### MailCatcher
+http://localhost:1080
