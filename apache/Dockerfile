@@ -1,4 +1,4 @@
-FROM php:7.1-apache
+FROM php:7.1-apache-jessie
 MAINTAINER docker-web
 
 RUN apt-get update \
